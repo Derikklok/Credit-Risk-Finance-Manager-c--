@@ -27,6 +27,14 @@ int main()
     enum Status current = PENDING;
     cout << current << endl;
 
+    // Reference variables
+    string food = "pizza";
+    string &meal = food;
+    cout << food << endl;
+    cout << meal << endl;
+
+    cout << "Memary adress of food \t:\t" << &food << endl;
+    cout << "Memory address of meal \t:\t" << &meal << endl;
 
     return 0;
 }
