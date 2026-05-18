@@ -192,3 +192,25 @@ Run:
 ## Git ignore
 
 This repo includes a `.gitignore` that excludes build outputs, vcpkg artifacts, and user-specific presets.
+
+## Run the init scripts
+
+### Standard C++ project
+
+```bash
+./Initiate_Cpp.sh MyProject
+cd MyProject
+cmake --preset=default
+cmake --build build
+./build/MyProject.exe
+```
+
+### Backend project (Drogon + MySQL)
+
+```bash
+./Initiate_Backend.sh MyBackend
+cd MyBackend
+cmake --preset=default
+cmake --build build
+APP_PORT=8080 ./build/MyBackend.exe
+```
