@@ -135,6 +135,7 @@ Run:
 - If you switch toolchains or vcpkg triplets, delete `build/` and reconfigure.
 - The MinGW linker must match vcpkg triplet. This setup uses `x64-mingw-dynamic`.
 - If CMake cannot find Ninja, make sure `CMAKE_MAKE_PROGRAM` points to the vcpkg Ninja path above.
+- This preset defaults to `Release`, and the build copies vcpkg runtime DLLs next to the exe so it runs without manual DLL copying.
 
 ## Server-side C++ (Drogon, ORM, MySQL)
 
