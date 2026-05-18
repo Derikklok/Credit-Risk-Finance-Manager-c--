@@ -136,6 +136,58 @@ Run:
 - The MinGW linker must match vcpkg triplet. This setup uses `x64-mingw-dynamic`.
 - If CMake cannot find Ninja, make sure `CMAKE_MAKE_PROGRAM` points to the vcpkg Ninja path above.
 
+## Server-side C++ (Drogon, ORM, MySQL)
+
+This setup works for server-side C++ projects too. The easiest path is to use vcpkg for all deps.
+
+### Install dependencies with vcpkg
+
+Add these to `vcpkg.json` when needed:
+
+```json
+{
+	"dependencies": [
+		"drogon",
+		"trantor",
+		"jsoncpp",
+		"openssl",
+		"mysql-connector-cpp"
+	]
+}
+```
+
+Notes:
+
+- Drogon ships with its own ORM layer. Use it if you want the simplest stack.
+- For MySQL, `mysql-connector-cpp` is the standard client library.
+- If you need PostgreSQL later, add `libpq` and use a matching ORM layer.
+
+### CMake usage (example)
+
+```cmake
+find_package(Drogon CONFIG REQUIRED)
+find_package(OpenSSL REQUIRED)
+find_package(mysql-connector-cpp CONFIG REQUIRED)
+
+add_executable(MyServer src/main.cpp)
+target_link_libraries(MyServer PRIVATE Drogon::Drogon OpenSSL::SSL OpenSSL::Crypto mysqlcppconn8)
+```
+
+### Build and run
+
+Same build steps apply:
+
+```bash
+cmake --preset=default
+cmake --build build
+```
+
+Run:
+
+```bash
+./build/MyServer.exe
+```
+
 ## Git ignore
 
 This repo includes a `.gitignore` that excludes build outputs, vcpkg artifacts, and user-specific presets.
